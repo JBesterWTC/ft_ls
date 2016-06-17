@@ -3,31 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgani <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/13 10:46:25 by kgani             #+#    #+#             */
-/*   Updated: 2016/05/15 10:50:18 by kgani            ###   ########.fr       */
+/*   Created: 2016/05/11 09:06:06 by sasiedu           #+#    #+#             */
+/*   Updated: 2016/05/23 07:58:23 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void		*ft_memccpy(void *restrict dst, const void *restrict src, \
+		int c, size_t n)
 {
-	int					i;
-	unsigned char		*s1;
-	const unsigned char	*s2;
+	size_t				i;
+	unsigned	char	*s1;
+	unsigned	char	*s2;
 
+	s1 = (unsigned char *)dst;
+	s2 = (unsigned char *)src;
 	i = 0;
-	s1 = dst;
-	s2 = src;
-	while (n > 0)
+	while (i < n && s2[i])
 	{
-		s1[i] = s2[i];
 		if (s2[i] == (unsigned char)c)
-			return (s1 + i + 1);
+			return (&dst[i + 1]);
+		s1[i] = s2[i];
 		i++;
-		n--;
 	}
+	if ((unsigned char)c == '\0' && s2[i] == '\0')
+		return (&s2[i]);
 	return (NULL);
 }

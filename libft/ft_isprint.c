@@ -3,21 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgani <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/15 04:32:09 by kgani             #+#    #+#             */
-/*   Updated: 2016/05/15 04:44:21 by kgani            ###   ########.fr       */
+/*   Created: 2016/05/09 11:14:29 by sasiedu           #+#    #+#             */
+/*   Updated: 2016/05/09 11:22:22 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isprint(int c)
+int		ft_isprint(char c)
 {
-	int	val;
-
-	val = (unsigned char)c;
-	if (val >= 32 && val <= 176)
+	if (c >= 32 && c <= 127)
 		return (1);
-	return (0);
+	else
+		return (0);
 }

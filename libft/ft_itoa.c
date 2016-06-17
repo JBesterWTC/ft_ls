@@ -1,25 +1,68 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/11 16:39:01 by sasiedu           #+#    #+#             */
+/*   Updated: 2016/05/11 17:13:37 by sasiedu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
+
+int		ft_count(int n)
+{
+	int		count;
+
+	count = 1;
+	while (n >= 10)
+	{
+		count++;
+		n = n / 10;
+	}
+	return (count);
+}
+
+char	*ft_do_neg(int n)
+{
+	int		size;
+	char	*str;
+
+	n = n * -1;
+	size = ft_count(n) + 1;
+	str = ft_strnew(size);
+	size--;
+	while (n != 0)
+	{
+		str[size] = '0' + (n % 10);
+		size--;
+		n = n / 10;
+	}
+	str[size] = '-';
+	return (str);
+}
 
 char	*ft_itoa(int n)
 {
-		char	*ret;
-		int		temp_n;
-		size_t	size_ret;
-		char	sign;
+	int		size;
+	char	*str;
 
-		sign = (n < 0) ? -1 : 1;
-		size_ret = 2 + (n < 0);
-		temp_n = n;
-		while ((n = n / 10))
-				size_ret++;
-		n = temp_n;
-		if ((ret = (char *)malloc(sizeof(char) * size_ret--)) == NULL)
-				return (NULL);
-		ret[size_ret--] = '\0';
-		ret[size_ret--] = sign * (n % 10) + '0';
-		while ((n = n / 10))
-				ret[size_ret--] = sign * (n % 10) + '0';
-		if (sign < 0)
-				ret[size_ret] = '-';
-		return (ret);
+	if (n >= 0)
+	{
+		size = ft_count(n);
+		str = ft_strnew(size);
+		size--;
+		while (n != 0)
+		{
+			str[size] = '0' + (n % 10);
+			size--;
+			n = n / 10;
+		}
+		return (str);
+	}
+	else
+		str = ft_do_neg(n);
+	return (str);
 }

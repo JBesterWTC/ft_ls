@@ -6,7 +6,7 @@
 /*   By: jbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 13:55:51 by jbester           #+#    #+#             */
-/*   Updated: 2016/06/14 16:10:56 by jbester          ###   ########.fr       */
+/*   Updated: 2016/06/17 16:29:49 by jbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,24 @@
 # include <stdio.h>
 # include "libft.h"
 
-typedef struct s_dir
+typedef struct	s_entry
 {
-	char	*name;
-	t_dir	*next;
-}				t_dir;
+	char			*name;
+	char			*flags;
+	struct s_entry	*next;
+}				t_entry;
 
-int	ft_straight(char *dir);
+typedef struct	s_flags
+{
+	int	a_flag;
+	int	l_flag;
+	int	R_flag;
+	int	t_flag;
+	int	r_flag;
+}				t_flags;
+
+int		ft_compare(t_entry *head, t_entry *new);
+//void	swap_node(t_entry *newNode, t_entry *head);
+int		ft_sort(char *dir);
 
 #endif

@@ -1,22 +1,37 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/09 10:39:57 by sasiedu           #+#    #+#             */
+/*   Updated: 2016/05/23 10:34:53 by sasiedu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
-	size_t res;
-	size_t sign;
+	int		neg;
+	int		num;
+	int		i;
 
-	sign = 1;
-	res = 0;
-	while ((*str >= '\t' && *str <= '\r') || *str == ' ')
-		str++;
-	if (*str == '-')
-		sign = -1;
-	if (*str == '+' || *str == '-')
-		str++;
-	while (*str && ft_isdigit(*str))
+	neg = 1;
+	i = 0;
+	if (str[0] == '-')
 	{
-		res *= 10;
-		res += *str++ - '0';
+		neg = -1;
+		i++;
 	}
-	return (res * sign);
+	if (str[0] == '-' && (str[1] > 57 || str[1] < 48))
+		return (0);
+	while (str[i] > 57 || str[i] < 48)
+		i++;
+	num = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + str[i] - '0';
+		i++;
+	}
+	return (neg * num);
 }

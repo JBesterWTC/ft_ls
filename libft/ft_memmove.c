@@ -3,22 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgani <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/13 10:17:03 by kgani             #+#    #+#             */
-/*   Updated: 2016/05/15 15:23:32 by kgani            ###   ########.fr       */
+/*   Created: 2016/05/11 08:53:35 by sasiedu           #+#    #+#             */
+/*   Updated: 2016/05/23 08:01:03 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char	*str;
+	size_t			i;
+	size_t			j;
+	char			*s1;
+	const	char	*s2;
+	char			temp[n + 1];
 
-	str = (unsigned char *)malloc(sizeof(*str) * len);
-	ft_memcpy(str, src, len);
-	ft_memcpy(dst, str, len);
-	free(str);
-	return (dst);
+	s1 = (char *)dest;
+	s2 = (const char *)src;
+	i = 0;
+	while (i < n)
+	{
+		temp[i] = s2[i];
+		i++;
+	}
+	j = 0;
+	while (j < n)
+	{
+		s1[j] = temp[j];
+		j++;
+	}
+	s1[j] = '\0';
+	return (dest);
 }

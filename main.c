@@ -6,7 +6,7 @@
 /*   By: jbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 13:25:59 by jbester           #+#    #+#             */
-/*   Updated: 2016/06/14 15:56:48 by jbester          ###   ########.fr       */
+/*   Updated: 2016/06/17 11:47:57 by jbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,19 @@ int	main(int argc, char **argv)
 	count = 1;
 	if (argc == 1)
 	{
-		ft_straight(".");
+		ft_sort(".");
 	}
 	else if (argc > 1)
 	{
-		while (count < argc)
-		{
-			if (argc > 2)
+		//if (argv[1][0] == '-')
+		//	ft_list_fld(argv, argc);
+		//else
+		//{
+			while (argv[count])
 			{
-				ft_putstr(argv[count]);
-				ft_putstr(":\n");
+				ft_sort(argv[count]);
+				count++;
 			}
-			ft_straight(argv[count]);
-			if (count < (argc - 1))
-				ft_putchar('\n');
-			count++;
-		}
+		//}
 	}
 }
